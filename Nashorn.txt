@@ -1,0 +1,9 @@
+Nashorn: Nashorn is a JavaScript engine which is introduced in JDK 8.
+
+With the help of Nashorn, we can execute JavaScript code at Java Virtual Machine. 
+
+Nashorn is introduced in JDK 8 to replace existing JavaScript engine i.e. Rhino. Nashorn is far better than Rhino in term of performance. 
+
+The uses of invoking dynamic feature, conversion of JavaScript code into the bytecode directly into the memory etc 
+
+makes the Nashorn more famous in JDK 8. We can execute JavaScript code by using the command-line tool and by embedding the JavaScript code into Java source code.
