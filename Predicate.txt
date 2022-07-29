@@ -1,0 +1,169 @@
+
+In Java 8, Predicate is a functional interface, which accepts an argument and returns a boolean. 
+
+Usually, it used to apply in a filter for a collection of objects.
+
+
+@FunctionalInterface
+public interface Predicate<T> {
+  boolean test(T t);
+}
+Further Reading
+Java 8 BiPredicate Examples
+
+1. Predicate in filter()
+filter() accepts predicate as argument.
+
+Java8Predicate.java
+
+package com.mkyong.java8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Java8Predicate {
+
+    public static void main(String[] args) {
+
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        List<Integer> collect = list.stream().filter(x -> x > 5).collect(Collectors.toList());
+
+        System.out.println(collect); // [6, 7, 8, 9, 10]
+
+    }
+
+}
+Output
+
+
+[6, 7, 8, 9, 10]
+Java8Predicate.java
+
+package com.mkyong.java8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+public class Java8Predicate {
+
+    public static void main(String[] args) {
+
+        Predicate<Integer> noGreaterThan5 =  x -> x > 5;
+
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        List<Integer> collect = list.stream()
+                .filter(noGreaterThan5)
+                .collect(Collectors.toList());
+
+        System.out.println(collect); // [6, 7, 8, 9, 10]
+
+    }
+
+}
+Output
+
+
+[6, 7, 8, 9, 10]
+
+
+
+2. Predicate.and()
+2.1 Multiple filters.
+
+Java8Predicate2.java
+
+package com.mkyong.java8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Java8Predicate2 {
+
+    public static void main(String[] args) {
+
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        // multiple filters
+        List<Integer> collect = list.stream()
+                .filter(x -> x > 5 && x < 8).collect(Collectors.toList());
+
+        System.out.println(collect);
+
+    }
+
+}
+Output
+
+
+[6, 7]
+2.1 Replace with Predicate.and()
+
+Java8Predicate2.java
+
+package com.mkyong.java8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+public class Java8Predicate2 {
+
+    public static void main(String[] args) {
+
+        Predicate<Integer> noGreaterThan5 = x -> x > 5;
+        Predicate<Integer> noLessThan8 = x -> x < 8;
+
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        List<Integer> collect = list.stream()
+                .filter(noGreaterThan5.and(noLessThan8))
+                .collect(Collectors.toList());
+
+        System.out.println(collect);
+
+    }
+
+}
+Output
+
+
+[6, 7]
+3. Predicate.or()
+Java8Predicate3.java
+
+package com.mkyong.java8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+public class Java8Predicate3 {
+
+    public static void main(String[] args) {
+
+        Predicate<String> lengthIs3 = x -> x.length() == 3;
+        Predicate<String> startWithA = x -> x.startsWith("A");
+
+        List<String> list = Arrays.asList("A", "AA", "AAA", "B", "BB", "BBB");
+
+        List<String> collect = list.stream()
+                .filter(lengthIs3.or(startWithA))
+                .collect(Collectors.toList());
+
+        System.out.println(collect);
+
+    }
+
+}
+Output
+
+
+[A, AA, AAA, BBB]
