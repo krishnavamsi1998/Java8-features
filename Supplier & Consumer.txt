@@ -1,0 +1,26 @@
+What is a supplier in Java 8?
+A supplier is a simple functional interface in Java 8 that does not take in any argument. It is used as an assignment target when making use of lambda expressions.
+
+The following is an example that denotes the usage of a supplier:
+
+import java.util.function.Supplier;
+public class Java8SupplierExample {
+public static void main(String[] args) {
+Supplier<String> supplier= ()-> "HelloLearners";
+System.out.println(supplier.get());
+}
+}
+
+
+ What is a consumer in Java 8?
+Just like a predicate, a consumer is a single argument functional interface present in Java 8. However, the consumer does not return any value and can be used for lambda expressions.
+
+The following piece of example code denotes the usage of the consumer interface to print a string:
+
+import java.util.function.Consumer;
+public class Java8ConsumerExample {
+public static void main(String[] args) {
+Consumer<String> consumerString=s->System.out.println(s);
+consumerString.accept("HelloWorld");
+}
+}
