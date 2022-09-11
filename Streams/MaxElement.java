@@ -17,6 +17,8 @@ public class Main
 		
 		
 		System.out.println("Max ele is "+max);
+		//Max ele is 98
+
 	
 	}
 }
