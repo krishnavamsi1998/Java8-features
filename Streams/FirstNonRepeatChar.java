@@ -16,11 +16,15 @@ public class FirstNonRepeatChar
 	    if(c!=' ')
 	    map.put(c,map.getOrDefault(c,0)+1);
 	   }
-	    
+	   // first non repeat character
 	   char res=map.entrySet().stream().filter(x->x.getValue()==1).findFirst().get().getKey();
+	   //h
+	   //first repeat character
+	   char res=map.entrySet().stream().filter(x->x.getValue()>1).findFirst().get().getKey();
+	   //v
 	    
 	   System.out.println(res);
-    //op : h
+  
 	    
 	    
 		
